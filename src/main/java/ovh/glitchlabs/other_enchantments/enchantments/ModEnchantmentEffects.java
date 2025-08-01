@@ -7,7 +7,9 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import ovh.glitchlabs.other_enchantments.Other_enchantments;
 import ovh.glitchlabs.other_enchantments.enchantments.custom.AltitudeCrashEnchantmentEffect;
+import ovh.glitchlabs.other_enchantments.enchantments.custom.EchoStrikeEnchantmentEffect;
 import ovh.glitchlabs.other_enchantments.enchantments.custom.LightningStrikerEnchantmentEffect;
+import ovh.glitchlabs.other_enchantments.enchantments.custom.WisdomEnchantmentEffect;
 
 import java.util.function.Supplier;
 
@@ -20,6 +22,12 @@ public class ModEnchantmentEffects {
 
     public static final Supplier<MapCodec<? extends EnchantmentEntityEffect>> ALTITUDE_CRASH =
             ENTITY_ENCHANTMENT_EFFECTS.register("altitude_crash", () -> AltitudeCrashEnchantmentEffect.CODEC);
+
+    public static final Supplier<MapCodec<? extends EnchantmentEntityEffect>> ECHO_STRIKE =
+            ENTITY_ENCHANTMENT_EFFECTS.register("echo_strike", () -> EchoStrikeEnchantmentEffect.CODEC);
+
+    public static final Supplier<MapCodec<? extends EnchantmentEntityEffect>> WISDOM =
+            ENTITY_ENCHANTMENT_EFFECTS.register("wisdom", () -> WisdomEnchantmentEffect.CODEC);
 
     public static void register(IEventBus eventBus) {
         ENTITY_ENCHANTMENT_EFFECTS.register(eventBus);

@@ -12,7 +12,9 @@ import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.EnchantmentTarget;
 import ovh.glitchlabs.other_enchantments.Other_enchantments;
 import ovh.glitchlabs.other_enchantments.enchantments.custom.AltitudeCrashEnchantmentEffect;
+import ovh.glitchlabs.other_enchantments.enchantments.custom.EchoStrikeEnchantmentEffect;
 import ovh.glitchlabs.other_enchantments.enchantments.custom.LightningStrikerEnchantmentEffect;
+import ovh.glitchlabs.other_enchantments.enchantments.custom.WisdomEnchantmentEffect;
 
 public class ModEnchantments {
     public static final ResourceKey<Enchantment> LIGHTNING_STRIKER = ResourceKey.create(Registries.ENCHANTMENT,
@@ -20,6 +22,15 @@ public class ModEnchantments {
 
     public static final ResourceKey<Enchantment> ALTITUDE_CRASH = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(Other_enchantments.MODID, "altitude_crash"));
+
+    public static final ResourceKey<Enchantment> WARP = ResourceKey.create(Registries.ENCHANTMENT,
+            ResourceLocation.fromNamespaceAndPath(Other_enchantments.MODID, "warp"));
+
+    public static final ResourceKey<Enchantment> ECHO_STRIKE = ResourceKey.create(Registries.ENCHANTMENT,
+            ResourceLocation.fromNamespaceAndPath(Other_enchantments.MODID, "echo_strike"));
+
+    public static final ResourceKey<Enchantment> WISDOM = ResourceKey.create(Registries.ENCHANTMENT,
+            ResourceLocation.fromNamespaceAndPath(Other_enchantments.MODID, "wisdom"));
 
     public static void bootstrap(BootstrapContext<Enchantment> context) {
         var enchantments = context.lookup(Registries.ENCHANTMENT);
@@ -50,6 +61,30 @@ public class ModEnchantments {
                         EquipmentSlotGroup.MAINHAND))
                 .withEffect(EnchantmentEffectComponents.POST_ATTACK, EnchantmentTarget.ATTACKER,
                         EnchantmentTarget.VICTIM, new AltitudeCrashEnchantmentEffect()));
+
+        register(context, ECHO_STRIKE, Enchantment.enchantment(Enchantment.definition(
+                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                        items.getOrThrow(ItemTags.SWORD_ENCHANTABLE),
+                        5,
+                        2,
+                        Enchantment.dynamicCost(8, 8),
+                        Enchantment.dynamicCost(28, 8),
+                        2,
+                        EquipmentSlotGroup.MAINHAND))
+                .withEffect(EnchantmentEffectComponents.POST_ATTACK, EnchantmentTarget.ATTACKER,
+                        EnchantmentTarget.VICTIM, new EchoStrikeEnchantmentEffect()));
+
+        register(context, WISDOM, Enchantment.enchantment(Enchantment.definition(
+                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                        items.getOrThrow(ItemTags.SWORD_ENCHANTABLE),
+                        5,
+                        3,
+                        Enchantment.dynamicCost(10, 10),
+                        Enchantment.dynamicCost(30, 10),
+                        3,
+                        EquipmentSlotGroup.MAINHAND))
+                .withEffect(EnchantmentEffectComponents.POST_ATTACK, EnchantmentTarget.ATTACKER,
+                        EnchantmentTarget.VICTIM, new WisdomEnchantmentEffect()));
     }
 
     private static void register(BootstrapContext<Enchantment> registry, ResourceKey<Enchantment> key,
